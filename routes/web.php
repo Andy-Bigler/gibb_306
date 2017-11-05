@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GuestController@postIndex');
 
 Auth::routes();
 
@@ -22,6 +20,7 @@ Route::resource('post', 'PostController');
 Route::resource('comment', 'CommentController');
 Route::resource('faq', 'FaqController');
 
+Route::get('/me', 'PostController@user')->name('post.user');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Guest Routes

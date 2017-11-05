@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}">
 </head>
 <body>
     <div id="app">
@@ -36,7 +37,13 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @guest
+                            <li><a href="{{ route('guest.post.index') }}">Forum</a></li>
+                            <li><a href="{{ route('guest.faq.index') }}">FAQ</a></li>
+                        @else
+                            <li><a href="{{ route('post.index') }}">Forum</a></li>
+                            <li><a href="{{ route('faq.index') }}">FAQ</a></li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -52,6 +59,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('post.user') }}">Meine Beiträge</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -76,5 +84,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/site.js') }}"></script>
 </body>
 </html>
