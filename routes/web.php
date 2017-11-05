@@ -17,4 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Crud Routes
+Route::resource('post', 'PostController');
+Route::resource('comment', 'CommentController');
+Route::resource('faq', 'FaqController');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Guest Routes
+Route::get('/guest/posts', 'GuestController@postIndex')->name('guest.post.index');
+Route::get('/guest/post/{post}', 'GuestController@postShow')->name('guest.post.show');
+Route::get('/guest/faq', 'GuestController@faqIndex')->name('guest.faq.index');
