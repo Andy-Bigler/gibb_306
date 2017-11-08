@@ -33,7 +33,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            {!! Html::linkRoute('post.index', '<< See All Posts', [], ['class' => 'btn btn-default btn-block btn-h1-spacing', 'style' => 'margin-top: 10px']) !!}
+                            {!! Html::linkRoute('guest.post.index', '<< Alle Beiträge', [], ['class' => 'btn btn-default btn-block btn-h1-spacing', 'style' => 'margin-top: 10px']) !!}
                         </div>
                     </div>
 
