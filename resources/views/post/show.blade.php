@@ -11,6 +11,16 @@
             <div class="col-md-4">
                 <div class="well">
                     <dl class="dl-horizontal">
+                        <dt>Author:</dt>
+                        <dd>{{ $post->user->name }}</dd>
+                    </dl>
+
+                    <dl class="dl-horizontal">
+                        <dt>Url Slug:</dt>
+                        <dd><a href="{{ route('guest.post.show', $post->slug) }}">{{ $post->slug }}</a></dd>
+                    </dl>
+
+                    <dl class="dl-horizontal">
                         <dt>Created At:</dt>
                         <dd>{{ date( 'j M, Y H:i', strtotime($post->created_at)) }}</dd>
                     </dl>
