@@ -20,7 +20,8 @@ Route::resource('post', 'PostController');
 Route::resource('comment', 'CommentController');
 Route::resource('faq', 'FaqController');
 
-Route::get('/me', 'PostController@user')->name('post.user');
+Route::get('/me/post', 'PostController@user')->name('post.user');
+Route::get('/me/faq', 'FaqController@user')->name('faq.user');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Guest Routes

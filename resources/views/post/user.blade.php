@@ -19,8 +19,8 @@
                 <table class="table">
                     <thead>
                     <th>#</th>
-                    <th>Title</th>
-                    <th>Body</th>
+                    <th>Titel</th>
+                    <th>Frage</th>
                     <th>Created At</th>
                     <th></th>
                     </thead>

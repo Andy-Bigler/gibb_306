@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Faq;
+use Auth;
 
 class FaqController extends Controller
 {
@@ -17,7 +19,9 @@ class FaqController extends Controller
      */
     public function index()
     {
-        return view('faq.index');
+        $faqs = Faq::orderBy('id', 'desc')->paginate(10);
+
+        return view('faq.index')->withFaqs($faqs);
     }
 
     /**
@@ -27,7 +31,7 @@ class FaqController extends Controller
      */
     public function create()
     {
-        //
+        return view('faq.create');
     }
 
     /**
@@ -38,7 +42,22 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'question' => 'required',
+            'answer' => 'required'
+        ));
+
+        $faq = new Faq;
+
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        $faq->user_id = Auth::user()->id;
+
+        $faq->save();
+
+        Session::flash('success', 'Faq wurde gespeichert!');
+
+        return redirect()->route('faq.show', $faq->id);
     }
 
     /**
@@ -60,7 +79,8 @@ class FaqController extends Controller
      */
     public function edit($id)
     {
-        //
+        $faq = Faq::find($id);
+        return view('faq.show')->withPost($faq);
     }
 
     /**
@@ -72,7 +92,21 @@ class FaqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, array(
+            'question' => 'required',
+            'answer' => 'required'
+        ));
+
+        $faq = Faq::find($id);
+
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+
+        $faq->save();
+
+        Session::flash('success', 'Faq wurde aktualisiert!');
+
+        return redirect()->route('faq.show', $faq->id);
     }
 
     /**
@@ -83,6 +117,20 @@ class FaqController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $faq = Faq::find($id);
+
+        $faq->delete();
+
+        Session::flash('success', 'Faq wurde gelöscht.');
+
+        return redirect()->route('faq.index');
+    }
+
+    public function user()
+    {
+        $userId = Auth::user()->id;
+        $faqs = Faq::where('user_id', $userId)->orderBy('id', 'desc')->paginate(10);
+
+        return view('faq.user')->withFaqs($faqs);
     }
 }

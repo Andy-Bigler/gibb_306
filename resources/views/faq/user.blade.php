@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <h1>FAQ</h1>
+                <h1>Meine FAQs</h1>
             </div>
             <div class="col-md-3">
                 <a href="{{ route('faq.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Neues FAQ</a>
