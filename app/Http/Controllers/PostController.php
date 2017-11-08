@@ -144,6 +144,9 @@ class PostController extends Controller
 
     public function user()
     {
-        return view('post.user');
+        $userId = Auth::user()->id;
+        $posts = Post::where('user_id', $userId)->orderBy('id', 'desc')->paginate(10);
+
+        return view('post.user')->withPosts($posts);
     }
 }
