@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'GuestController@postIndex');
+Route::get('/', 'GuestController@welcome');
 
 Auth::routes();
 

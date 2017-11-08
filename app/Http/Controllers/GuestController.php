@@ -20,4 +20,9 @@ class GuestController extends Controller
     {
         return view('guest.indexFaq');
     }
+
+    public function welcome()
+    {
+        return view('guest.welcome');
+    }
 }
