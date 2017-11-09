@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Faq;
 use Auth;
 
@@ -68,7 +69,8 @@ class FaqController extends Controller
      */
     public function show($id)
     {
-        //
+        $faq = Faq::find($id);
+        return view('faq.show')->withFaq($faq);
     }
 
     /**
@@ -80,7 +82,7 @@ class FaqController extends Controller
     public function edit($id)
     {
         $faq = Faq::find($id);
-        return view('faq.show')->withPost($faq);
+        return view('faq.edit')->withFaq($faq);
     }
 
     /**

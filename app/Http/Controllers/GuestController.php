@@ -24,11 +24,16 @@ class GuestController extends Controller
 
     public function faqIndex()
     {
-        return view('guest.indexFaq');
+        $faq = Faq::orderBy('id', 'desc')->paginate(10);
+
+        return view('guest.indexFaq')->withFaqs($faq);
     }
 
     public function welcome()
     {
-        return view('guest.welcome');
+        $posts = Post::orderBy('id', 'desc')->limit(3)->get();
+        $faqs = Faq::orderBy('id', 'desc')->limit(3)->get();
+
+        return view('guest.welcome')->withPosts($posts)->withFaqs($faqs);
     }
 }

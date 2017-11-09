@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h1>Form Guest</h1>
+                <h1>Forum Guest</h1>
                 <br>
                 @foreach($posts as $post)
                     <div class="post">
