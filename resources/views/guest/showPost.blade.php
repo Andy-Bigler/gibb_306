@@ -6,6 +6,19 @@
             <div class="col-md-8">
                 <h1>{{ $post->title }}</h1>
                 <p class="lead">{{ $post->body }}</p>
+
+                <br>
+                <hr>
+                <h2>Kommentare:</h2>
+
+                @foreach($post->comments as $comment)
+                    <div class="post">
+                        <h5>{{ $comment->user->name }}</h5>
+                        <h6>{{ date( 'j M, Y H:i', strtotime($comment->created_at)) }}</h6>
+                        <p>{{ $comment->body }}</p>
+                    </div>
+                    <br>
+                @endforeach
             </div>
 
             <div class="col-md-4">
