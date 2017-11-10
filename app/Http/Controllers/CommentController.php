@@ -14,15 +14,6 @@ class CommentController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +36,7 @@ class CommentController extends Controller
     public function store(Request $request, $id)
     {
         $this->validate($request, array(
-            'body' => 'required|max:255'
+            'body' => 'required'
         ));
 
         $comment = new Comment;
@@ -62,25 +53,17 @@ class CommentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $post_id)
     {
-        //
+        $comment = Comment::find($id);
+        $post = Post::find($post_id);
+
+        return view('comment.edit')->withComment($comment)->withPost($post);
     }
 
     /**
@@ -90,9 +73,21 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $post_id)
     {
-        //
+        $this->validate($request, array(
+            'body' => 'required'
+        ));
+
+        $comment = Comment::find($id);
+
+        $comment->body = $request->body;
+
+        $comment->save();
+
+        Session::flash('success', 'Kommentar wurde aktualisiert!');
+
+        return redirect()->route('post.show', $post_id);
     }
 
     /**
@@ -101,8 +96,14 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $post_id)
     {
-        //
+        $comment = Comment::find($id);
+
+        $comment->delete();
+
+        Session::flash('success', 'Kommentar wurde gelöscht.');
+
+        return redirect()->route('post.show', $post_id);
     }
 }

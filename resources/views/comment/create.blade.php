@@ -28,6 +28,7 @@
                 {{ Form::textarea('body', null, array('class' => 'form-control')) }}
                 {{ Form::submit('Kommentar erstellen', array('class' => 'btn btn-primary btn-lg btn-block', 'style' => 'margin-top: 30px')) }}
                 {!! Form::close() !!}
+                <br>
             </div>
 
             <div class="col-md-4">

@@ -18,13 +18,11 @@ Auth::routes();
 //Crud Routes
 Route::resource('post', 'PostController');
 Route::resource('faq', 'FaqController');
-Route::get('/comment', 'CommentController@index')->name('comment.index');
 Route::post('/comment/{post}', 'CommentController@store')->name('comment.store');
 Route::get('/comment/create/{post}', 'CommentController@create')->name('comment.create');
-Route::get('/comment/{comment}', 'CommentController@show')->name('comment.show');
-Route::delete('/comment/{comment}', 'CommentController@destroy')->name('comment.destroy');
-Route::put('/comment/{comment}', 'CommentController@update')->name('comment.update');
-Route::get('/comment/{comment}/edit', 'CommentController@edit')->name('comment.edit');
+Route::delete('/comment/{comment}/{post}', 'CommentController@destroy')->name('comment.destroy');
+Route::put('/comment/{comment}/{post}', 'CommentController@update')->name('comment.update');
+Route::get('/comment/{comment}/edit/{post}', 'CommentController@edit')->name('comment.edit');
 
 Route::get('/me/post', 'PostController@user')->name('post.user');
 Route::get('/me/faq', 'FaqController@user')->name('faq.user');

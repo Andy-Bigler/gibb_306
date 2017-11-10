@@ -16,6 +16,18 @@
                         <h5>{{ $comment->user->name }}</h5>
                         <h6>{{ date( 'j M, Y H:i', strtotime($comment->created_at)) }}</h6>
                         <p>{{ $comment->body }}</p>
+                        @if(Auth::user()->id == $comment->user_id)
+                        <div class="row">
+                            <div class="col-sm-2 col-xs-4">
+                                {!! Html::linkRoute('comment.edit', 'Edit', array($comment->id, $post->id), array('class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 10px')) !!}
+                            </div>
+                            <div class="col-sm-2 col-xs-4">
+                                {!! Form::open(['route' => ['comment.destroy', $comment->id, $post->id], 'method' => 'delete']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block', 'style' => 'margin-top: 10px']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     <br>
                 @endforeach
