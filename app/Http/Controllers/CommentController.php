@@ -7,6 +7,7 @@ use Session;
 use App\Comment;
 use App\Post;
 use Auth;
+use Gate;
 
 class CommentController extends Controller
 {
@@ -81,6 +82,10 @@ class CommentController extends Controller
 
         $comment = Comment::find($id);
 
+        if (Gate::denies('edit-comment', $comment)) {
+            return redirect()->route('post.show', $post_id);
+        }
+
         $comment->body = $request->body;
 
         $comment->save();
@@ -99,6 +104,10 @@ class CommentController extends Controller
     public function destroy($id, $post_id)
     {
         $comment = Comment::find($id);
+
+        if (Gate::denies('delete-comment', $comment)) {
+            return redirect()->route('post.show', $post_id);
+        }
 
         $comment->delete();
 

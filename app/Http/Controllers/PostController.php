@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Post;
 use Auth;
+use Gate;
 
 class PostController extends Controller
 {
@@ -114,6 +115,10 @@ class PostController extends Controller
         }
         $post = Post::find($id);
 
+        if (Gate::denies('edit-post', $post)) {
+            return redirect()->route('post.show', $post->id);
+        }
+
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->body = $request->input('body');
@@ -134,6 +139,10 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        if (Gate::denies('delete-post', $post)) {
+            return redirect()->route('post.index');
+        }
 
         $post->delete();
 
