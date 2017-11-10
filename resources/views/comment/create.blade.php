@@ -9,18 +9,6 @@
 
                 <br>
                 <hr>
-                <h2>Kommentare:</h2>
-
-                @foreach($post->comments as $comment)
-                    <div class="post">
-                        <h5>{{ $comment->user->name }}</h5>
-                        <h6>{{ date( 'j M, Y H:i', strtotime($comment->created_at)) }}</h6>
-                        <p>{{ $comment->body }}</p>
-                    </div>
-                    <br>
-                @endforeach
-
-                <hr>
                 <h2>Kommentar schreiben:</h2>
 
                 {!! Form::open(['route' => ['comment.store', $post->id], 'method' => 'POST']) !!}
@@ -28,6 +16,18 @@
                 {{ Form::textarea('body', null, array('class' => 'form-control')) }}
                 {{ Form::submit('Kommentar erstellen', array('class' => 'btn btn-primary btn-lg btn-block', 'style' => 'margin-top: 30px')) }}
                 {!! Form::close() !!}
+
+                <hr>
+                <h2>Kommentare:</h2>
+
+                @foreach($post->comments->reverse() as $comment)
+                    <div class="post">
+                        <h5>{{ $comment->user->name }}</h5>
+                        <h6>{{ date( 'j M, Y H:i', strtotime($comment->created_at)) }}</h6>
+                        <p>{{ $comment->body }}</p>
+                    </div>
+                    <br>
+                @endforeach
                 <br>
             </div>
 
