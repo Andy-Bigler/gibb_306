@@ -60,5 +60,18 @@ class CommentTableSeeder extends Seeder
             'post_id' => 2,
             'user_id' => 2
         ]);
+
+
+        Comment::create([
+            'body' => "The identity (===) operator behaves identically to the equality (==) operator except no type conversion is done, and the types must be the same to be considered equal. Reference: Javascript Tutorial: Comparison Operators. The == operator will compare for equality after doing any necessary type conversions. The === operator will not do the conversion, so if two values are not the same type === will simply return false. Both are equally quick.",
+            'post_id' => 3,
+            'user_id' => 5
+        ]);
+
+        Comment::create([
+            'body' => "Just in case anyone was wondering in 2012: === is way faster than ==",
+            'post_id' => 3,
+            'user_id' => 2
+        ]);
     }
 }

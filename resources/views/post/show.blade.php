@@ -56,16 +56,18 @@
                     </dl>
                     <hr>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            {!! Html::linkRoute('post.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 10px')) !!}
+                    @if(Auth::user()->id == $post->user_id)
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {!! Html::linkRoute('post.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 10px')) !!}
+                            </div>
+                            <div class="col-sm-6">
+                                {!! Form::open(['route' => ['post.destroy', $post->id], 'method' => 'delete']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block', 'style' => 'margin-top: 10px']) !!}
+                                {!! Form::close() !!}
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            {!! Form::open(['route' => ['post.destroy', $post->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block', 'style' => 'margin-top: 10px']) !!}
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
+                    @endif
                     <div class="row">
                         <div class="col-sm-12">
                             {!! Html::linkRoute('comment.create', 'Kommentieren', array($post->id), array('class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 10px')) !!}

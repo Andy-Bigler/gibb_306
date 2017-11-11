@@ -28,7 +28,7 @@
                     @foreach($posts as $post)
                         <tr>
                             <th>{{ $post->id }}</th>
-                            <td>{{ $post->title }}</td>
+                            <td>{{ substr($post->title, 0, 50) }}{{ strlen($post->title) > 50 ? "..." : "" }}</td>
                             <td>{{ substr($post->body, 0, 50) }}{{ strlen($post->body) > 50 ? "..." : "" }}</td>
                             <td>{{ date( 'j M, Y', strtotime($post->created_at)) }}</td>
                             <td><a href="{{ route('post.show', $post->id) }}" class="btn btn-default btn-sm btn-marg">View</a></td>

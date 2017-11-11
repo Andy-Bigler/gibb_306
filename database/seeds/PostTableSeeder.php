@@ -25,5 +25,12 @@ class PostTableSeeder extends Seeder
             'slug' => 'Howtoredirecttoanotherwebpage',
             'user_id' => 5
         ]);
+
+        Post::create([
+            'title' => 'Which equals operator (== vs ===) should be used in JavaScript comparisons?',
+            'body' => 'I\'m using JSLint to go through JavaScript, and it\'s returning many suggestions to replace == (two equals signs) with === (three equals signs) when doing things like comparing idSele_UNVEHtype.value.length == 0 inside of an if statement. Is there a performance benefit to replacing == with ===? Any performance improvement would be welcomed as many comparison operators exist. If no type conversion takes place, would there be a performance gain over ==?',
+            'slug' => 'WhichequalsoperatorshouldbeusedinJavaScriptcomparisons',
+            'user_id' => 1
+        ]);
     }
 }
