@@ -14,13 +14,31 @@ class UserTableSeeder extends Seeder
     {
         User::create([
             'name' => 'Andy Bigler',
-            'email' => 'andy.bigler@besonet.ch',
+            'email' => 'andy.bigler@iet-gibb.ch',
             'password' => bcrypt('gibbiX12345')
         ]);
 
         User::create([
-            'name' => 'Hans Peter',
-            'email' => 'hans.peter@gmail.com',
+            'name' => 'Alejandro Probst',
+            'email' => 'alejandro.probst@iet-gibb.ch',
+            'password' => bcrypt('gibbiX12345')
+        ]);
+
+        User::create([
+            'name' => 'Nicolo Lüscher',
+            'email' => 'nicolo.luescher@iet-gibb.ch',
+            'password' => bcrypt('gibbiX12345')
+        ]);
+
+        User::create([
+            'name' => 'Jannik Hug',
+            'email' => 'jannik.hug@iet-gibb.ch',
+            'password' => bcrypt('gibbiX12345')
+        ]);
+
+        User::create([
+            'name' => 'Tom Diggelmann',
+            'email' => 'tom.diggelmann@iet-gibb.ch',
             'password' => bcrypt('gibbiX12345')
         ]);
     }

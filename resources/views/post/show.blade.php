@@ -11,7 +11,7 @@
                 <hr>
                 <h2>Kommentare:</h2>
 
-                @foreach($post->comments->reverse() as $comment)
+                @foreach($post->comments as $comment)
                     <div class="post">
                         <h5>{{ $comment->user->name }}</h5>
                         <h6>{{ date( 'j M, Y H:i', strtotime($comment->created_at)) }}</h6>

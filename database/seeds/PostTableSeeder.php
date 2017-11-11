@@ -13,17 +13,17 @@ class PostTableSeeder extends Seeder
     public function run()
     {
         Post::create([
-           'title' => 'Always getting 404 Error',
-           'body' => 'How to fix this',
-            'slug' => '404error_05112017',
-            'user_id' => 1
+           'title' => 'How to undo the last commits in Git?',
+           'body' => 'I committed by accident the wrong files into Git, but I haven\'t pushed the commit to the server yet. How can I undo those commits?',
+            'slug' => 'HowtoundothelastcommitsinGit',
+            'user_id' => 2
         ]);
 
         Post::create([
-            'title' => 'What is C#',
-            'body' => 'I found this in an online post and am interessted what it is',
-            'slug' => 'whatiscsharp_05112017',
-            'user_id' => 2
+            'title' => 'How to redirect to another webpage?',
+            'body' => 'How can I redirect the user from one page to another using jQuery or pure JavaScript?',
+            'slug' => 'Howtoredirecttoanotherwebpage',
+            'user_id' => 5
         ]);
     }
 }
